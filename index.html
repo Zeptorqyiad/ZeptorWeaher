@@ -7,13 +7,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>ZeptorWeather</title>
 	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 </head>
 
 <body>
 	<div class="app" id="app">
 		<div class="app__container">
-			
+			<!-- Верхняя часть -->
+			<div class="app__container-top">
+				<!-- Форма -->
+				<div class="location-form">
+					<input type="text" class="location-form__input" id="location-form" placeholder="Location">
+					<button class="location-form__btn" id="location-form-btn">
+						<img class="location-form__icon" src="./img/searchmagnifierinterfacesymbol1_79893.png" alt="Search">
+					</button>
+				</div>
+			</div>
+
+			<!-- Нижняя часть -->
+			<div class="app__container-bottom"></div>
 		</div>
 	</div>
 
