@@ -121,14 +121,17 @@ body {
    padding: 0 10px;
    height: 100vh;
    gap: 20px;
-   background-color: bisque;
+   transition: grid-template-rows 0.4s;
 }
+
+.app__container_top {
+   grid-template-rows: 84px auto;
+}
+
 .app__container-top {
-   background-color: rgb(79, 210, 32);
    align-self: flex-end;
 }
 .app__container-bottom {
-   background-color: rgb(47, 78, 219);
 }
 
 .location-form {
@@ -146,6 +149,7 @@ body {
    border-radius: 34px;
    text-transform: uppercase;
    font-size: 18px;
+   padding-right: 86px;
    transition: box-shadow 0.3s ease 0s;
    &:focus {
       box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.2);
@@ -166,7 +170,220 @@ body {
    padding: 0;
    visibility: hidden;
    opacity: 0;
+   will-change: opacity, background-color;
    transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+   &:hover {
+      background-color: var(--base-color);
+   }
+   &:active {
+      background-color: var(--base-color-active);
+   }
+   &:focus {
+      outline: none;
+   }
 }
-.location-form__icon {
+.location-form__input:valid + .location-form__btn {
+   opacity: 1;
+   visibility: visible;
+}
+
+/* Карточки */
+
+.card {
+   background-color: white;
+   border-radius: 28px;
+   transition: box-shadow 0.4s, 0.4s width, height 0.4s, animation 0.4s,
+      background-color 0.4s, backdrop-filter 0.4s, color 0.4s;
+   will-change: width, height, transform, filter, backdrop-filter;
+   width: 0px;
+   height: 0px;
+   overflow: hidden;
+   margin: 0 auto;
+   margin-bottom: 20px;
+   transform: scale(0);
+}
+
+.card__inner {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 20px;
+   opacity: 0;
+   transition: opactity 0.4s, transform 0.4s;
+   transform: scale(0);
+   will-change: opacity, transform;
+   height: 100%;
+}
+
+.card__head {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 20px;
+}
+.card__head-left {
+   display: flex;
+   gap: 10px;
+   align-items: center;
+}
+.card__icon {
+   flex-shrink: 0;
+   width: 80px;
+   height: 80px;
+   background-size: 120%;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-image: url();
+   background-color: aqua;
+   transition: width 0.4s, height 0.4s, backfround-image 0.4s;
+   will-change: width, height, background-image;
+}
+
+.card__title {
+   font-size: 28px;
+   margin: 0;
+   max-width: 280px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   transition: transform 0.4s;
+   transform: translateY(-12px);
+   will-change: transform;
+}
+
+.card__desc {
+   position: absolute;
+   display: block;
+   opacity: 0.6;
+   transform: translateY(-10px);
+   will-change: opacity;
+   transition: opacity 0.4s, visibility 0.2s;
+}
+
+.card-param {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.card-param-icon {
+   flex-shrink: 0;
+   width: 34px;
+   height: 34px;
+   transition: fill 0.4s;
+}
+.card-param-text {
+   font-size: 28px;
+}
+
+.card__footer {
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+   margin-top: 20px;
+   transition: opacity 0.4s;
+   will-change: opacity;
+   overflow: hidden;
+   /* opacity: 0; */
+}
+
+.card-param-icon_footer {
+   width: 26px;
+   height: 26px;
+}
+
+.card-param-text_footer {
+   font-size: 24px;
+}
+
+/* Загрузка */
+
+.card.loading {
+   width: 30px;
+   height: 30px;
+   transform: scale(1);
+   animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+   0% {
+      transform: scale(1);
+   }
+   50% {
+      transform: scale(0.3);
+   }
+   100% {
+      transform: scale(1);
+   }
+}
+
+.card.full {
+   width: 100%;
+   height: 170px;
+   animation: none;
+   transform: scale(1);
+}
+
+.card.full .card__inner {
+   opacity: 1;
+   transform: scale(1);
+}
+
+.card.full .card__footer {
+   opacity: 0.6;
+}
+
+/* Стандартная */
+
+.card.glass {
+   background-color: rgba(102, 102, 102, 0.25);
+   backdrop-filter: blur(8px);
+   color: white;
+   height: 80px;
+   width: 100%;
+}
+
+.card.glass .card-param__icon {
+   fill: white;
+}
+
+.card.glass .card__inner {
+   opacity: 1;
+   transform: scale(1);
+}
+
+.card.glass .card__title {
+   transform: none;
+}
+
+.card.glass .card__desc {
+   opacity: 0;
+}
+.card.glass .card__icon {
+   width: 42px;
+   height: 42px;
+   filter: grayscale(1);
+}
+
+.card.glass:hover {
+   height: 170px;
+   background-color: rgba(33, 33, 33, 0.3);
+}
+
+.card.glass:hover .card__title {
+   transform: translateY(-12px);
+}
+
+.card.glass:hover .card__icon {
+   width: 80px;
+   height: 80px;
+}
+
+.card.glass:hover .card__desc {
+   opacity: 1;
+   visibility: visible;
+}
+
+.card.glass:hover .card__footer {
+   opacity: 0.6;
 }
