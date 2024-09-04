@@ -1,0 +1,11 @@
+/node__modules
+
+logs/debug.log
+logs/important.log
+
+logs/debug.log
+logs/monday/debug.log
+logs/monday/pm/debug.log
+
+**/logs
+
