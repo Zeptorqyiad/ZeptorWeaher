@@ -1,7 +1,19 @@
+const APIKEY = '99b2e1dbf424a2da06a5a952a40f53d1'
+
 const $cardsBox = document.getElementById('cards-box')
 const $locationForm = document.getElementById('location-form')
 const $locationInput = document.getElementById('location-form-input')
 let currentCard = null
+
+async function getWeatherData(location) {
+   const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}&units=metric`
+   )
+
+   const data = await response.json()
+
+   return data
+}
 
 function getNewCard() {
    const $card = document.createElement('div')
@@ -105,8 +117,20 @@ $locationForm.addEventListener('submit', function (event) {
 
    $cardsBox.prepend(newCard.$card)
 
-   setTimeout(function () {
+   setTimeout(async function () {
       newCard.$card.classList.add('loading')
+
+      const data = await getWeatherData(location)
+
+      newCard.$icon.style.backgroundImage = `url(https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png)`
+
+      newCard.$title.textContent = data.name
+      newCard.$desc.textContent = data.weather[0].description
+      newCard.$temp.textContent = data.main.temp
+      newCard.$wind.textContent = data.wind.speed
+      newCard.$humidity.textContent = data.main.humidity
+
+      console.log(data)
 
       setTimeout(function () {
          document
@@ -114,7 +138,7 @@ $locationForm.addEventListener('submit', function (event) {
             .classList.add('app__container_top')
 
          if (currentCard !== null) {
-            currentCard.$card.classList.remove('full')
+            // currentCard.$card.classList.remove('full')
             currentCard.$card.classList.add('glass')
          }
 
@@ -122,6 +146,6 @@ $locationForm.addEventListener('submit', function (event) {
 
          newCard.$card.classList.remove('loading')
          newCard.$card.classList.add('full')
-      }, 800)
+      }, 600)
    }, 30)
 })
