@@ -125,10 +125,10 @@ $locationForm.addEventListener('submit', function (event) {
       newCard.$icon.style.backgroundImage = `url(https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png)`
 
       newCard.$title.textContent = data.name
-      newCard.$desc.textContent = data.weather[0].description
-      newCard.$temp.textContent = data.main.temp
-      newCard.$wind.textContent = data.wind.speed
-      newCard.$humidity.textContent = data.main.humidity
+      // newCard.$desc.textContent = data.weather[0].description
+      // newCard.$temp.textContent = data.main.temp
+      // newCard.$wind.textContent = data.wind.speed
+      // newCard.$humidity.textContent = data.main.humidity
 
       console.log(data)
 
@@ -138,7 +138,6 @@ $locationForm.addEventListener('submit', function (event) {
             .classList.add('app__container_top')
 
          if (currentCard !== null) {
-            // currentCard.$card.classList.remove('full')
             currentCard.$card.classList.add('glass')
          }
 
@@ -146,6 +145,6 @@ $locationForm.addEventListener('submit', function (event) {
 
          newCard.$card.classList.remove('loading')
          newCard.$card.classList.add('full')
-      }, 600)
+      }, 800)
    }, 30)
 })

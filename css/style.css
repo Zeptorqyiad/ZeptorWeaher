@@ -112,6 +112,8 @@ body {
    font-family: Arial, Verdana, sans-serif;
    background-color: rgb(7, 44, 84);
    color: var(--black-text);
+
+   transition: background-image 2s;
 }
 .app__container {
    display: grid;
@@ -234,7 +236,6 @@ body {
    background-repeat: no-repeat;
    background-position: center;
    background-image: url();
-   background-color: aqua;
    transition: width 0.4s, height 0.4s, backfround-image 0.4s;
    will-change: width, height, background-image;
 }
@@ -344,7 +345,7 @@ body {
 }
 
 .card.glass .card-param__icon {
-   fill: white;
+   enable-background: white;
 }
 
 .card.glass .card__inner {
