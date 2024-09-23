@@ -141,6 +141,8 @@ $locationForm.addEventListener('submit', function (event) {
             currentCard.$card.classList.add('glass')
          }
 
+         document.body.style.backgroundImage = `url(img/bg/${data.weather[0].icon}.jpg)`
+
          currentCard = newCard
 
          newCard.$card.classList.remove('loading')
