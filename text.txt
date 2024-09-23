@@ -31,7 +31,6 @@
 							</div>
 						</div>
 
-						<!-- Футер -->
 						<div class="card__footer">
 							<div class="card__footer-left">
 								<div class="card__footer-left card-param">
